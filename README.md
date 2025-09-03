@@ -32,56 +32,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 npm run dev
 ```
 
-## Supabase 설정
-
-### 1. 테이블 생성
-
-`contact_inquiries` 테이블을 생성하세요:
-
-```sql
-CREATE TABLE contact_inquiries (
-  id SERIAL PRIMARY KEY,
-  desired_course TEXT NOT NULL,
-  education TEXT NOT NULL,
-  name TEXT NOT NULL,
-  contact TEXT NOT NULL,
-  special_notes TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-```
-
-### 2. RLS 정책 설정
-
-```sql
--- 모든 사용자가 읽기 가능
-ALTER TABLE contact_inquiries ENABLE ROW LEVEL SECURITY;
-
--- 익명 사용자가 데이터 삽입 가능
-CREATE POLICY "Allow anonymous insert" ON contact_inquiries
-  FOR INSERT WITH CHECK (true);
-
--- 인증된 사용자가 모든 데이터 읽기 가능
-CREATE POLICY "Allow authenticated read" ON contact_inquiries
-  FOR SELECT USING (true);
-```
-
-### 3. Authentication 설정
-
-Supabase Dashboard에서 다음을 설정하세요:
-
-1. **Authentication > Settings**에서 이메일 확인 비활성화 (선택사항)
-2. **Authentication > Users**에서 새 사용자 추가:
-   - 이메일: `admin@eduvisors.com` (원하는 이메일)
-   - 비밀번호: 안전한 비밀번호 설정
-3. **Authentication > Policies**에서 RLS 정책 확인
-
-## 어드민 페이지
-
-- URL: `/admin`
-- **Supabase Authentication 사용**
-- 이메일과 비밀번호로 로그인
-- 자동 로그인 상태 유지
-
 ## 폼 필드
 
 - **희망과정**: 학점은행제, 자격증과정, 진로상담, 기타
