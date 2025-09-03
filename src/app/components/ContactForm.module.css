@@ -1,0 +1,306 @@
+.contactSection {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    width: 100%;
+}
+
+.contactContainer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contactTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1e293b;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contactForm {
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.input,
+.select,
+.textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background: white;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submitButton {
+    width: 100%;
+    background: #3b82f6;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.submitButton:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.successMessage {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.errorMessage {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.privacyAgreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.125rem;
+    cursor: pointer;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #374151;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.required {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.privacyText {
+    font-weight: 500;
+}
+
+.privacyLink {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
+}
+
+.privacyLink:hover {
+    color: #2563eb;
+}
+
+.privacyDetails {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid #3b82f6;
+    margin-top: 0.5rem;
+}
+
+.privacyDetails p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* 모달 스타일 */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modalContent {
+    background: white;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    background: white;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modalCloseButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalCloseButton:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.modalBody {
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.modalBody h4 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+}
+
+.modalBody h4:first-child {
+    margin-top: 0;
+}
+
+.modalBody p {
+    margin: 0.75rem 0;
+    color: #374151;
+}
+
+.modalBody ul {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+}
+
+.modalBody li {
+    margin: 0.5rem 0;
+    color: #374151;
+}
+
+.modalBody strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .contactSection {
+        padding: 2rem 1rem;
+    }
+
+    .contactTitle {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contactForm {
+        padding: 2rem 1.5rem;
+    }
+
+    .formGroup {
+        margin-bottom: 1.5rem;
+    }
+
+    .modalContent {
+        margin: 1rem;
+        max-height: 90vh;
+    }
+
+    .modalHeader {
+        padding: 1rem 1.5rem;
+    }
+
+    .modalHeader h3 {
+        font-size: 1.25rem;
+    }
+
+    .modalBody {
+        padding: 1.5rem;
+    }
+}

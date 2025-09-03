@@ -1,103 +1,315 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import styles from "./page.module.css";
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [counts, setCounts] = useState({
+    students: 0,
+    applications: 0,
+    remaining: 0,
+  });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const contactFormRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const animateCounts = () => {
+      const targets = {
+        students: 8106,
+        applications: 26,
+        remaining: 6,
+      };
+
+      const duration = 2000; // 2초 동안 애니메이션
+      const steps = 60;
+      const stepValue = {
+        students: targets.students / steps,
+        applications: targets.applications / steps,
+        remaining: targets.remaining / steps,
+      };
+
+      let currentStep = 0;
+      const timer = setInterval(() => {
+        currentStep++;
+
+        setCounts({
+          students: Math.min(
+            Math.round(stepValue.students * currentStep),
+            targets.students
+          ),
+          applications: Math.min(
+            Math.round(stepValue.applications * currentStep),
+            targets.applications
+          ),
+          remaining: Math.min(
+            Math.round(stepValue.remaining * currentStep),
+            targets.remaining
+          ),
+        });
+
+        if (currentStep >= steps) {
+          clearInterval(timer);
+        }
+      }, duration / steps);
+    };
+
+    // 페이지 로드 직후 바로 애니메이션 시작
+    animateCounts();
+  }, []);
+
+  const scrollToContactForm = () => {
+    contactFormRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  return (
+    <div className={styles.container}>
+      <section className={styles.mainSection}>
+        {/* Logo */}
+        <div className={styles.logoContainer}>
+          <div className={styles.logoImage}>
+            <span>
+              <img
+                src="/logo2.png"
+                width={30}
+                height={30}
+                alt="logo"
+                className={styles.logoImg}
+              />
+            </span>
+          </div>
+          <h1 className={styles.logoText}>Eduvisors</h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Call-to-Action Button */}
+        <button className={styles.ctaButton} onClick={scrollToContactForm}>
+          상담 신청 하기
+        </button>
+
+        {/* Statistics */}
+        <div className={styles.statsGrid}>
+          {/* First Statistic */}
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{counts.students}명</div>
+            <div className={styles.statUnderline}></div>
+            <div className={styles.statLabel}>누적 학생 수</div>
+          </div>
+
+          {/* Second Statistic */}
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{counts.applications}명</div>
+            <div className={styles.statUnderline}></div>
+            <div className={styles.statLabel}>금일 상담 신청</div>
+          </div>
+
+          {/* Third Statistic */}
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>{counts.remaining}명</div>
+            <div className={styles.statUnderline}></div>
+            <div className={styles.statLabel}>금일 잔여 상담 수</div>
+          </div>
+        </div>
+      </section>
+      <section className={styles.faqSection}>
+        <img src="faq.png" alt="faq" className={styles.faqSectionImg} />
+      </section>
+      <section className={styles.contentSection}>
+        <h2 className={styles.contentTitle}>
+          에듀바이저스와 함께라면
+          <br />{" "}
+          <span className={styles.contentTitleSpan}>
+            여러분들의 고민도 끝입니다!
+          </span>
+        </h2>
+
+        <div className={styles.contentCards}>
+          {/* Card 1 - Trophy */}
+          <div className={styles.contentCard}>
+            <div className={styles.cardIcon}>
+              <img
+                src="/content001.png"
+                alt="국가평생교육진흥원"
+                className={styles.cardImage}
+              />
+            </div>
+          </div>
+
+          {/* Card 2 - Career Counselor */}
+          <div className={styles.contentCard}>
+            <div className={styles.cardIcon}>
+              <img
+                src="/content002.png"
+                alt="진로직업상담사"
+                className={styles.cardImage}
+              />
+            </div>
+          </div>
+
+          {/* Card 3 - Notebook */}
+          <div className={styles.contentCard}>
+            <div className={styles.cardIcon}>
+              <img
+                src="/content003.png"
+                alt="교육원 이동 없이"
+                className={styles.cardImage}
+              />
+            </div>
+          </div>
+
+          {/* Card 4 - Smartphone */}
+          <div className={styles.contentCard}>
+            <div className={styles.cardIcon}>
+              <img
+                src="/content004.png"
+                alt="핸드폰 PC 수강"
+                className={styles.cardImage}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Qua Section - 국가 공인 자격증 */}
+      <section className={styles.quasection}>
+        <img
+          src="/quasection.png"
+          alt="국가 공인 자격증 및 학사 학위 과정"
+          className={styles.quasectionImg}
+        />
+      </section>
+      <section className={styles.quasection2}></section>
+      {/* Study Features Section */}
+      <section className={styles.studyFeaturesSection}>
+        <div className={styles.studyFeaturesContainer}>
+          {/* Study Feature 1 */}
+          <div className={styles.studyFeature}>
+            <div className={styles.studyFeatureImage}>
+              <div className={styles.studyFeatureText}>
+                <h3>
+                  <span className={styles.studyFeatureTextSpan}>
+                    언제 어디서나!
+                  </span>
+                  <br /> 핸드폰 / PC / 태블릿 수강
+                </h3>
+              </div>
+              <img
+                src="/study001.png"
+                alt="쉽고 편한 난이도, 육아/직장 병행 가능"
+              />
+            </div>
+          </div>
+
+          {/* Study Feature 2 */}
+          <div className={styles.studyFeature}>
+            <div className={styles.studyFeatureImage}>
+              <div className={styles.studyFeatureText}>
+                <h3>
+                  <span className={styles.studyFeatureTextSpan}>
+                    1:1 전문가 관리!
+                  </span>
+                  <br /> 처음 상담부터 합격까지
+                </h3>
+              </div>
+              <img
+                src="/study002.png"
+                alt="언제 어디서나, 핸드폰/PC/태블릿 수강"
+              />
+            </div>
+          </div>
+
+          {/* Study Feature 3 */}
+          <div className={styles.studyFeature}>
+            <div className={styles.studyFeatureImage}>
+              <div className={styles.studyFeatureText}>
+                <h3>
+                  <span className={styles.studyFeatureTextSpan}>
+                    쉽고 편한 난이도!
+                  </span>
+                  <br /> 육아 / 직장 병행 가능
+                </h3>
+              </div>
+              <img
+                src="/study003.png"
+                alt="1:1 전문가 관리, 처음 상담부터 합격까지"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className={styles.kakaotalkSection}>
+        <h1 className={styles.kakaotalkTitle}>
+          <span>&apos;한평생 에듀바이저스&apos;</span>와 함께한
+          <br />
+          선배 학습자분들의 <span>카톡 후기</span>를 공개합니다
+        </h1>
+      </section>
+
+      {/* Infinite Flowing Swiper Section */}
+      <section className={styles.infiniteSwiperSection}>
+        <h2 className={styles.infiniteSwiperTitle}>
+          에듀바이저스와 함께한 성공 스토리
+        </h2>
+        <div className={styles.swiperContainer}>
+          {/* 첫 번째 세트 */}
+          <div className={styles.swiperItem}>
+            <img src="/swiper001.png" alt="성공 스토리 1" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper002.png" alt="성공 스토리 2" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper003.png" alt="성공 스토리 3" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper004.png" alt="성공 스토리 4" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper005.png" alt="성공 스토리 5" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper006.png" alt="성공 스토리 6" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper007.png" alt="성공 스토리 7" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper008.png" alt="성공 스토리 8" />
+          </div>
+          {/* 두 번째 세트 (무한 루프를 위해) */}
+          <div className={styles.swiperItem}>
+            <img src="/swiper001.png" alt="성공 스토리 1" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper002.png" alt="성공 스토리 2" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper003.png" alt="성공 스토리 3" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper004.png" alt="성공 스토리 4" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper005.png" alt="성공 스토리 5" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper006.png" alt="성공 스토리 6" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper007.png" alt="성공 스토리 7" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper008.png" alt="성공 스토리 8" />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <div ref={contactFormRef}>
+        <ContactForm />
+      </div>
     </div>
   );
 }
