@@ -266,24 +266,11 @@ export default function Home() {
           <div className={styles.swiperItem}>
             <img src="/swiper008.png" alt="성공 스토리 8" />
           </div>
-          {/* 두 번째 세트 (무한 루프를 위해) */}
-          <div className={styles.swiperItem}>
-            <img src="/swiper001.png" alt="성공 스토리 1" />
-          </div>
-          <div className={styles.swiperItem}>
-            <img src="/swiper002.png" alt="성공 스토리 2" />
-          </div>
           <div className={styles.swiperItem}>
             <img src="/swiper003.png" alt="성공 스토리 3" />
           </div>
           <div className={styles.swiperItem}>
-            <img src="/swiper004.png" alt="성공 스토리 4" />
-          </div>
-          <div className={styles.swiperItem}>
             <img src="/swiper005.png" alt="성공 스토리 5" />
-          </div>
-          <div className={styles.swiperItem}>
-            <img src="/swiper006.png" alt="성공 스토리 6" />
           </div>
           <div className={styles.swiperItem}>
             <img src="/swiper007.png" alt="성공 스토리 7" />

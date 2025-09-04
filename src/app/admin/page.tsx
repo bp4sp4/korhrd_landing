@@ -128,6 +128,28 @@ export default function AdminPage() {
     }
   };
 
+  const handleDelete = async (id: number) => {
+    if (!confirm("정말로 이 상담 신청을 삭제하시겠습니까?")) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from("contact_inquiries")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
+
+      // 삭제 후 목록 새로고침
+      await fetchInquiries();
+      alert("삭제되었습니다.");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+
   if (!isLoggedIn) {
     return (
       <div className={styles.adminContainer}>
@@ -212,6 +234,7 @@ export default function AdminPage() {
                   <th>희망과정</th>
                   <th>최종학력</th>
                   <th>특이사항</th>
+                  <th>관리</th>
                 </tr>
               </thead>
               <tbody>
@@ -226,6 +249,14 @@ export default function AdminPage() {
                     <td>{inquiry.desired_course}</td>
                     <td>{inquiry.education}</td>
                     <td>{inquiry.special_notes || "-"}</td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(inquiry.id)}
+                        className={styles.deleteButton}
+                      >
+                        삭제
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
