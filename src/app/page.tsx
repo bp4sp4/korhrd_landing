@@ -253,24 +253,12 @@ export default function Home() {
           에듀바이저스와 함께한 성공 스토리
         </h2>
         <div className={styles.swiperContainer}>
-          {/* 첫 번째 세트 */}
-          <div className={styles.swiperItem}>
-            <img src="/swiper001.png" alt="성공 스토리 1" />
-          </div>
-          <div className={styles.swiperItem}>
-            <img src="/swiper002.png" alt="성공 스토리 2" />
-          </div>
+          {/* 첫 번째 세트 */}\
           <div className={styles.swiperItem}>
             <img src="/swiper003.png" alt="성공 스토리 3" />
           </div>
           <div className={styles.swiperItem}>
-            <img src="/swiper004.png" alt="성공 스토리 4" />
-          </div>
-          <div className={styles.swiperItem}>
             <img src="/swiper005.png" alt="성공 스토리 5" />
-          </div>
-          <div className={styles.swiperItem}>
-            <img src="/swiper006.png" alt="성공 스토리 6" />
           </div>
           <div className={styles.swiperItem}>
             <img src="/swiper007.png" alt="성공 스토리 7" />

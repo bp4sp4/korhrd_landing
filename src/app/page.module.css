@@ -163,7 +163,7 @@
 .contentCard {
     text-align: center;
     flex: 1;
-    width: 100%;
+    min-width: 200px;
 }
 
 .cardIcon {
@@ -326,7 +326,7 @@
 
 
     .faqSection {
-        background-image: url('/faqsection.jpeg');
+        background-image: url('/faqsection_mobile.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -339,11 +339,7 @@
     }
 
     .faqSectionImg {
-        width: 92%;
-        object-fit: contain;
-        animation: slideInFromBack 1.2s ease-out forwards;
-        opacity: 0;
-        transform: translateZ(-100px) scale(0.8);
+        display: none;
     }
 
     .mainSection {
@@ -381,6 +377,23 @@
         line-height: 1.4;
     }
 
+    .contentCards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .contentCard {
+        min-width: auto;
+    }
+
+    .cardImage {
+        width: 100%;
+        max-width: 150px;
+        height: 250px;
+    }
+
     .studyFeaturesSection {
         padding: 2rem 1rem;
     }
@@ -401,6 +414,11 @@
         width: 100%;
         height: 600px;
         object-fit: cover;
+    }
+
+    .quasection2 {
+        background-image: url('/quasection2_mobile.png');
+        height: 250px;
     }
 }
 
@@ -457,8 +475,6 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
-
-
 
 .swiperItem img {
     width: 100%;
