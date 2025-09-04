@@ -21,8 +21,10 @@ export default function AdminPage() {
   const [inquiries, setInquiries] = useState<ContactInquiry[]>([]);
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   useEffect(() => {
     // 페이지 로드 시 로그인 상태 확인
@@ -30,12 +32,22 @@ export default function AdminPage() {
   }, []);
 
   const checkAuthStatus = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      setIsLoggedIn(true);
-      fetchInquiries();
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setIsLoggedIn(true);
+        await fetchInquiries();
+      } else {
+        // 인증되지 않은 사용자는 로그인 페이지로 리다이렉트
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      console.error("Auth check error:", error);
+      setIsLoggedIn(false);
+    } finally {
+      setInitialLoading(false);
     }
   };
 
@@ -150,6 +162,61 @@ export default function AdminPage() {
     }
   };
 
+  const handleSelectItem = (id: number) => {
+    setSelectedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const handleSelectAll = () => {
+    if (selectedItems.length === currentInquiries.length) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems(currentInquiries.map((inquiry) => inquiry.id));
+    }
+  };
+
+  const handleBulkDelete = async () => {
+    if (selectedItems.length === 0) {
+      alert("삭제할 항목을 선택해주세요.");
+      return;
+    }
+
+    if (
+      !confirm(
+        `선택한 ${selectedItems.length}개의 상담 신청을 삭제하시겠습니까?`
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from("contact_inquiries")
+        .delete()
+        .in("id", selectedItems);
+
+      if (error) throw error;
+
+      // 삭제 후 목록 새로고침 및 선택 초기화
+      await fetchInquiries();
+      setSelectedItems([]);
+      alert(`${selectedItems.length}개의 항목이 삭제되었습니다.`);
+    } catch (error) {
+      console.error("Bulk delete error:", error);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 초기 로딩 중일 때 로딩 화면 표시
+  if (initialLoading) {
+    return (
+      <div className={styles.adminContainer}>
+        <div className={styles.loading}>인증 상태를 확인하는 중...</div>
+      </div>
+    );
+  }
+
   if (!isLoggedIn) {
     return (
       <div className={styles.adminContainer}>
@@ -215,6 +282,19 @@ export default function AdminPage() {
             건
           </p>
         </div>
+        {selectedItems.length > 0 && (
+          <div className={styles.bulkActions}>
+            <span className={styles.selectedCount}>
+              {selectedItems.length}개 선택됨
+            </span>
+            <button
+              onClick={handleBulkDelete}
+              className={styles.bulkDeleteButton}
+            >
+              선택 삭제
+            </button>
+          </div>
+        )}
       </div>
 
       {loading ? (
@@ -227,6 +307,17 @@ export default function AdminPage() {
             <table className={styles.inquiriesTable}>
               <thead>
                 <tr>
+                  <th>
+                    <input
+                      type="checkbox"
+                      checked={
+                        selectedItems.length === currentInquiries.length &&
+                        currentInquiries.length > 0
+                      }
+                      onChange={handleSelectAll}
+                      className={styles.checkbox}
+                    />
+                  </th>
                   <th>번호</th>
                   <th>신청일시</th>
                   <th>이름</th>
@@ -240,6 +331,14 @@ export default function AdminPage() {
               <tbody>
                 {currentInquiries.map((inquiry) => (
                   <tr key={inquiry.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.includes(inquiry.id)}
+                        onChange={() => handleSelectItem(inquiry.id)}
+                        className={styles.checkbox}
+                      />
+                    </td>
                     <td>{inquiry.id}</td>
                     <td>
                       {new Date(inquiry.created_at).toLocaleString("ko-KR")}
@@ -262,6 +361,39 @@ export default function AdminPage() {
               </tbody>
             </table>
           )}
+        </div>
+      )}
+
+      {/* 페이지네이션 */}
+      {inquiries.length > itemsPerPage && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageButton}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            이전
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              className={`${styles.pageButton} ${
+                currentPage === page ? styles.activePage : ""
+              }`}
+              onClick={() => handlePageChange(page)}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            className={styles.pageButton}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            다음
+          </button>
         </div>
       )}
     </div>

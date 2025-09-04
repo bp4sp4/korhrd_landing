@@ -26,14 +26,47 @@ export default function ContactForm() {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    // 연락처 필드인 경우 하이푼 자동 포맷팅
+    if (name === "contact") {
+      const formattedValue = formatPhoneNumber(value);
+      setFormData((prev) => ({
+        ...prev,
+        [name]: formattedValue,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
 
     // 기타 과정 선택 시 기타 입력창 초기화
     if (name === "desiredCourse" && value !== "기타") {
       setOtherCourse("");
+    }
+  };
+
+  // 전화번호 포맷팅 함수
+  const formatPhoneNumber = (value: string) => {
+    // 숫자만 추출
+    const numbers = value.replace(/[^\d]/g, "");
+
+    // 길이에 따라 포맷팅
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(
+        7
+      )}`;
+    } else {
+      // 11자리 초과 시 11자리까지만
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(
+        7,
+        11
+      )}`;
     }
   };
 
@@ -197,6 +230,7 @@ export default function ContactForm() {
               required
               className={styles.input}
               placeholder="연락처를 입력해주세요"
+              maxLength={13}
             />
           </div>
 
