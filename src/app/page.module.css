@@ -418,7 +418,7 @@
 
     .quasection2 {
         background-image: url('/quasection2_mobile.png');
-        height: 314px;
+        width: 100%;
     }
 }
 
