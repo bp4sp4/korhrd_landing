@@ -170,15 +170,73 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Qua Section - 국가 공인 자격증 */}
-      <section className={styles.quasection}>
-        <img
-          src="/quasection.png"
-          alt="국가 공인 자격증 및 학사 학위 과정"
-          className={styles.quasectionImg}
-        />
+        {/* Qua Section - 국가 공인 자격증 */}
+        <div className={styles.quasection}>
+          <h1 className={styles.contentTitle}>
+            <span className={styles.contentTitleSpan}>국가 공인 자격증</span>
+            <br />
+            검증된 과정, 보장된 결과
+          </h1>
+
+          <div className={styles.quaCards}>
+            {/* Qua Card 1 - 사회복지사 */}
+            <div className={styles.quaCard}>
+              <div className={styles.quaCardIcon}>
+                <img
+                  src="/qua001.png"
+                  alt="사회복지사2급"
+                  className={styles.quaCardImage}
+                />
+              </div>
+            </div>
+
+            {/* Qua Card 2 - 보육교사 */}
+            <div className={styles.quaCard}>
+              <div className={styles.quaCardIcon}>
+                <img
+                  src="/qua002.png"
+                  alt="보육교사2급"
+                  className={styles.quaCardImage}
+                />
+              </div>
+            </div>
+
+            {/* Qua Card 3 - 요양보호사 */}
+            <div className={styles.quaCard}>
+              <div className={styles.quaCardIcon}>
+                <img
+                  src="/qua003.png"
+                  alt="요양보호사2급"
+                  className={styles.quaCardImage}
+                />
+              </div>
+            </div>
+
+            {/* Qua Card 4 - 한국어교원 */}
+            <div className={styles.quaCard}>
+              <div className={styles.quaCardIcon}>
+                <img
+                  src="/qua004.png"
+                  alt="한국어교원2급"
+                  className={styles.quaCardImage}
+                />
+              </div>
+            </div>
+            <h1 className={styles.contentTitle}>
+              이외에도 다양한
+              <br />
+              <span className={styles.contentTitleSpan}>
+                국가 공인 자격증 / 학사 학위 취득!
+              </span>
+            </h1>
+            <img
+              src="/qualist.png"
+              alt="국가 공인 자격증 / 학사 학위 취득"
+              className={styles.qualistImage}
+            />
+          </div>
+        </div>
       </section>
       <section className={styles.quasection2}></section>
       {/* Study Features Section */}

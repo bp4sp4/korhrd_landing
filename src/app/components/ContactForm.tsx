@@ -128,7 +128,7 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className={styles.contactForm}>
           <div className={styles.formGroup}>
             <label htmlFor="desiredCourse" className={styles.label}>
-              희망과정 *
+              희망과정 *(상담 후 결정 희망하시면 기타 선택해주세요!)
             </label>
             <select
               id="desiredCourse"
@@ -141,23 +141,11 @@ export default function ContactForm() {
               <option value="">과정을 선택해주세요</option>
               <option value="사회복지사2급">사회복지사2급</option>
               <option value="보육교사2급">보육교사2급</option>
-              <option value="요양보호사2급">요양보호사2급</option>
-              <option value="한국어교원2급">한국어교원2급</option>
-              <option value="장애인영유아 보육교사">
-                장애인영유아 보육교사
+              <option value="장애영유아 보육교사">
+                장애영유아 위한 보육교사
               </option>
-              <option value="사서 자격증">사서 자격증</option>
-              <option value="평생 교육사">평생 교육사</option>
-              <option value="청소년 지도사">청소년 지도사</option>
-              <option value="종합 미용 면허증">종합 미용 면허증</option>
               <option value="아동학사">아동학사</option>
-              <option value="심리학사">심리학사</option>
-              <option value="경영학사">경영학사</option>
-              <option value="전기/전자 학사">전기/전자 학사</option>
-              <option value="기사/산업 기사 응시 자격">
-                기사/산업 기사 응시 자격
-              </option>
-              <option value="진로상담">진로상담</option>
+              <option value="정사서자격증">정사서자격증</option>
               <option value="기타">기타</option>
             </select>
 
@@ -183,7 +171,7 @@ export default function ContactForm() {
 
           <div className={styles.formGroup}>
             <label htmlFor="education" className={styles.label}>
-              최종학력 *
+              최종학력 *(최종학력마다 과정이 조금씩 달라져요!)
             </label>
             <select
               id="education"
@@ -196,7 +184,7 @@ export default function ContactForm() {
               <option value="">학력을 선택해주세요</option>
               <option value="고등학교 졸업">고등학교 졸업</option>
               <option value="대학교 졸업">대학교 졸업</option>
-              <option value="대학원 졸업">대학원 졸업</option>
+              <option value="대학교 중퇴">대학교 중퇴</option>
               <option value="기타">기타</option>
             </select>
           </div>
