@@ -109,11 +109,12 @@
 }
 
 .faqSectionImg {
-    width: 50%;
+    width: 70%;
     object-fit: contain;
     animation: slideInFromBack 1.2s ease-out forwards;
     opacity: 0;
     transform: translateZ(-100px) scale(0.8);
+    margin-top: 150px
 }
 
 @keyframes slideInFromBack {
@@ -172,8 +173,7 @@
 }
 
 .cardImage {
-    width: 230px;
-
+    width: 280px;
     object-fit: contain;
     border-radius: 1rem;
 }
@@ -273,7 +273,7 @@
 }
 
 .quaCardImage {
-    width: 230px;
+    width: 280px;
     height: 350px;
     object-fit: contain;
     border-radius: 1rem;
@@ -290,6 +290,26 @@
     border-radius: 1rem;
     border: 1px solid #e5e7eb;
     padding: 5rem;
+
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3), 0 10px 20px rgba(29, 78, 216, 0.2);
+    position: relative;
+}
+
+.qualistImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+.qualistImage img {
+    position: relative;
+    z-index: 2;
 }
 
 .quasection2 {
@@ -416,8 +436,10 @@
     }
 
     .contentTitle {
-        font-size: 2rem;
+        font-size: 1.5rem;
         line-height: 1.4;
+        margin: 0;
+        padding-top: 10px;
     }
 
     .contentCards {
@@ -472,7 +494,7 @@
     .quaCardImage {
         width: 100%;
         max-width: 150px;
-        height: 250px;
+        height: 170px;
     }
 
     .qualistImage {
@@ -568,6 +590,10 @@
 @media (max-width: 768px) {
     .kakaotalkSection {
         padding: 3rem 1rem;
+        background-image: url('/background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .kakaotalkTitle {

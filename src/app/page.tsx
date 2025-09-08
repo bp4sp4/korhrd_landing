@@ -223,6 +223,8 @@ export default function Home() {
                 />
               </div>
             </div>
+          </div>
+          <div>
             <h1 className={styles.contentTitle}>
               이외에도 다양한
               <br />
@@ -313,10 +315,22 @@ export default function Home() {
         <div className={styles.swiperContainer}>
           {/* 첫 번째 세트 */}\
           <div className={styles.swiperItem}>
-            <img src="/swiper003.png" alt="성공 스토리 3" />
+            <img src="/swiper001.png" alt="성공 스토리 3" />
           </div>
           <div className={styles.swiperItem}>
-            <img src="/swiper005.png" alt="성공 스토리 5" />
+            <img src="/swiper002.jpeg" alt="성공 스토리 5" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper003.png" alt="성공 스토리 7" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper004.jpeg" alt="성공 스토리 8" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper005.jpeg" alt="성공 스토리 3" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper006.png" alt="성공 스토리 5" />
           </div>
           <div className={styles.swiperItem}>
             <img src="/swiper007.png" alt="성공 스토리 7" />
@@ -325,10 +339,22 @@ export default function Home() {
             <img src="/swiper008.png" alt="성공 스토리 8" />
           </div>
           <div className={styles.swiperItem}>
-            <img src="/swiper003.png" alt="성공 스토리 3" />
+            <img src="/swiper001.png" alt="성공 스토리 3" />
           </div>
           <div className={styles.swiperItem}>
-            <img src="/swiper005.png" alt="성공 스토리 5" />
+            <img src="/swiper002.jpeg" alt="성공 스토리 5" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper003.png" alt="성공 스토리 7" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper004.jpeg" alt="성공 스토리 8" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper005.jpeg" alt="성공 스토리 3" />
+          </div>
+          <div className={styles.swiperItem}>
+            <img src="/swiper006.png" alt="성공 스토리 5" />
           </div>
           <div className={styles.swiperItem}>
             <img src="/swiper007.png" alt="성공 스토리 7" />
