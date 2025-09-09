@@ -259,7 +259,7 @@
     justify-content: center;
     gap: 2rem;
     max-width: 1400px;
-    margin: 2rem auto 0;
+    margin: 3rem auto;
 }
 
 .quaCard {
@@ -394,7 +394,7 @@
         background-position: center;
         background-repeat: no-repeat;
         width: 100%;
-        height: 375px;
+        height: 450px;
         display: flex;
         align-items: center;
         justify-content: center;
