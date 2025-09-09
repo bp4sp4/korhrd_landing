@@ -395,7 +395,7 @@ export default function Home() {
         }`}
         onClick={scrollToContactForm}
       >
-        빠른 상담 신청 하기
+        상담 신청하고 선착순 장학지원 받기 ⟩
       </button>
     </div>
   );

@@ -64,13 +64,12 @@
 /* 고정 CTA 버튼 */
 .fixedCtaButton {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #3b82f6;
-    color: white;
+    bottom: 0;
+    width: 100%;
+    background-color: #FEE500;
+    color: 1e1e1e;
     font-weight: bold;
     padding: 1rem 2rem;
-    border-radius: 0.75rem;
     font-size: 1rem;
     transition: all 0.3s ease;
     border: none;
@@ -315,13 +314,11 @@
 /* Qualist 이미지 스타일 */
 .qualistImage {
     width: 90%;
-
     height: auto;
     object-fit: contain;
     margin: 2rem auto;
     display: block;
     border-radius: 1rem;
-
 }
 
 
@@ -434,8 +431,7 @@
     }
 
     .fixedCtaButton {
-        bottom: 1rem;
-        right: 1rem;
+        width: 100%;
         padding: 0.875rem 1.5rem;
         font-size: 0.9rem;
     }
@@ -524,7 +520,7 @@
         height: auto;
         margin: 1rem auto;
         padding: 0rem;
-
+        content: url('/qualist_mobile.png');
     }
 
     .quasection2 {
