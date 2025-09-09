@@ -10,8 +10,10 @@ export default function Home() {
     applications: 0,
     remaining: 0,
   });
+  const [showFixedButton, setShowFixedButton] = useState(false);
 
   const contactFormRef = useRef<HTMLDivElement>(null);
+  const mainSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const animateCounts = () => {
@@ -21,7 +23,7 @@ export default function Home() {
         remaining: 6,
       };
 
-      const duration = 2000; // 2초 동안 애니메이션
+      const duration = 2000;
       const steps = 60;
       const stepValue = {
         students: targets.students / steps,
@@ -58,6 +60,24 @@ export default function Home() {
     animateCounts();
   }, []);
 
+  // 스크롤 이벤트 리스너 추가
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mainSectionRef.current) {
+        const mainSectionBottom =
+          mainSectionRef.current.offsetTop +
+          mainSectionRef.current.offsetHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+
+        // mainSection을 벗어나면 고정 버튼 표시
+        setShowFixedButton(scrollPosition > mainSectionBottom);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToContactForm = () => {
     contactFormRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -67,7 +87,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <section className={styles.mainSection}>
+      <section className={styles.mainSection} ref={mainSectionRef}>
         {/* Logo */}
         <div className={styles.logoContainer}>
           <div className={styles.logoImage}>
@@ -113,9 +133,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className={styles.faqSection}>
-        <img src="faq.png" alt="faq" className={styles.faqSectionImg} />
-      </section>
+      <section className={styles.faqSection}></section>
       <section className={styles.contentSection}>
         <h2 className={styles.contentTitle}>
           에듀바이저스와 함께라면
@@ -369,6 +387,16 @@ export default function Home() {
       <div ref={contactFormRef}>
         <ContactForm />
       </div>
+
+      {/* 고정 CTA 버튼 */}
+      <button
+        className={`${styles.fixedCtaButton} ${
+          showFixedButton ? styles.visible : ""
+        }`}
+        onClick={scrollToContactForm}
+      >
+        빠른 상담 신청 하기
+      </button>
     </div>
   );
 }

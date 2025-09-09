@@ -61,6 +61,39 @@
     background-color: #2563eb;
 }
 
+/* 고정 CTA 버튼 */
+.fixedCtaButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.fixedCtaButton.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.fixedCtaButton:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
 .statsGrid {
     display: grid;
     grid-template-columns: 1fr;
@@ -96,7 +129,7 @@
 }
 
 .faqSection {
-    background-image: url('/faqsection.jpeg');
+    background-image: url('/faqsection.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -243,7 +276,7 @@
     width: 100%;
     margin: 50px auto;
     text-align: center;
-    padding: 2rem 0;
+
 }
 
 .quasectionImg {
@@ -281,36 +314,17 @@
 
 /* Qualist 이미지 스타일 */
 .qualistImage {
-    width: 100%;
-    max-width: 1000px;
+    width: 90%;
+
     height: auto;
     object-fit: contain;
     margin: 2rem auto;
     display: block;
     border-radius: 1rem;
-    border: 1px solid #e5e7eb;
-    padding: 5rem;
 
-    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3), 0 10px 20px rgba(29, 78, 216, 0.2);
-    position: relative;
 }
 
-.qualistImage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
-    border-radius: 1rem;
-    z-index: 1;
-}
 
-.qualistImage img {
-    position: relative;
-    z-index: 2;
-}
 
 .quasection2 {
     background-image: url('/quasection2.png');
@@ -394,7 +408,7 @@
         background-position: center;
         background-repeat: no-repeat;
         width: 100%;
-        height: 450px;
+        height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -417,6 +431,13 @@
     .ctaButton {
         padding: 0.875rem 1.5rem;
         font-size: 1rem;
+    }
+
+    .fixedCtaButton {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .statNumber {
@@ -502,9 +523,8 @@
         max-width: 100%;
         height: auto;
         margin: 1rem auto;
-        padding: 1rem;
-        border: 1px solid #e5e7eb;
-        border-radius: .3rem;
+        padding: 0rem;
+
     }
 
     .quasection2 {
