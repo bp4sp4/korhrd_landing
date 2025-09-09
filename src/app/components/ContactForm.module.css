@@ -304,4 +304,20 @@
     .modalBody {
         padding: 1.5rem;
     }
+
+    .checkboxLabel {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        font-size: 0.9rem;
+        gap: 0.25rem;
+    }
+
+    .privacyText {
+        white-space: nowrap;
+    }
+
+    .privacyLink {
+        white-space: nowrap;
+        font-size: 0.8rem;
+    }
 }

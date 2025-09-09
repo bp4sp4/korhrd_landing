@@ -73,13 +73,29 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!privacyAgreement) {
-      alert("개인정보 수집 및 이용에 동의해주세요.");
+    // 필수 필드 유효성 검사
+    if (!formData.name.trim()) {
+      alert("이름을 입력해주세요.");
+      return;
+    }
+
+    if (!formData.contact.trim()) {
+      alert("연락처를 입력해주세요.");
+      return;
+    }
+
+    if (!formData.desiredCourse) {
+      alert("희망과정을 선택해주세요.");
       return;
     }
 
     if (formData.desiredCourse === "기타" && !otherCourse.trim()) {
       alert("기타 과정을 선택하셨습니다. 과정명을 입력해주세요.");
+      return;
+    }
+
+    if (!privacyAgreement) {
+      alert("개인정보 수집 및 이용에 동의해주세요.");
       return;
     }
 
@@ -139,13 +155,11 @@ export default function ContactForm() {
               className={styles.select}
             >
               <option value="">과정을 선택해주세요</option>
-              <option value="사회복지사2급">사회복지사2급</option>
-              <option value="보육교사2급">보육교사2급</option>
-              <option value="장애영유아 보육교사">
-                장애영유아 위한 보육교사
-              </option>
+              <option value="사회복지사 2급">사회복지사 2급</option>
+              <option value="보육교사 2급">보육교사 2급</option>
+              <option value="장애영유아 보육교사">장애영유아 보육교사</option>
               <option value="아동학사">아동학사</option>
-              <option value="정사서자격증">정사서자격증</option>
+              <option value="정사서 2급">정사서 2급</option>
               <option value="기타">기타</option>
             </select>
 
