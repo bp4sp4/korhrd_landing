@@ -16,8 +16,8 @@ export default function Home() {
   useEffect(() => {
     const animateCounts = () => {
       const targets = {
-        students: 8106,
-        applications: 26,
+        students: 12487,
+        applications: 47,
         remaining: 6,
       };
 
